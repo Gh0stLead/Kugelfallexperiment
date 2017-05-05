@@ -16,10 +16,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Kugelfallexperiment.ino" />
+    <None Include="Analyser.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Kugelfallexperiment.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Analyzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Analyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
