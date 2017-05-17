@@ -16,7 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Kugelfallexperiment.ino" />
-    <None Include="Analyser.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Kugelfallexperiment.vsarduino.h">
@@ -25,9 +24,15 @@
     <ClInclude Include="Analyzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Servomotorcontrol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Analyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Servomotorcontrol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -11,12 +11,10 @@
 class Analyzer
 {
 public:
-    int hallsensor;
-    int photosensor;
-    int trigger_val;
-    int switchposition;
-    bool triggered;
-    bool getTriggered();
+    Analyzer();
+    void onoff();
+private:
+    int _pin;
 };
 
 #endif
