@@ -81,12 +81,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Analyzer.h" />
+    <ClInclude Include="ExecutionType.h" />
+    <ClInclude Include="ExecutionTypeManager.h" />
+    <ClInclude Include="MainController.h" />
+    <ClInclude Include="SensorManager.h" />
+    <ClInclude Include="SensorReader.h" />
     <ClInclude Include="Servomotorcontrol.h" />
+    <ClInclude Include="TestButtonReader.h" />
     <ClInclude Include="__vm\.Kugelfallexperiment.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Analyzer.cpp" />
+    <ClCompile Include="ExecutionTypeManager.cpp" />
+    <ClCompile Include="MainController.cpp" />
+    <ClCompile Include="SensorManager.cpp" />
+    <ClCompile Include="SensorReader.cpp" />
     <ClCompile Include="Servomotorcontrol.cpp" />
+    <ClCompile Include="TestButtonReader.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>

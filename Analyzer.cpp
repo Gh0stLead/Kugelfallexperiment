@@ -13,7 +13,7 @@ Analyzer::Analyzer()
 void Analyzer::onoff()
 {
     digitalWrite(_pin, HIGH);
-    delay(1000);
+    delay(200);
     digitalWrite(_pin, LOW);
-    delay(1000);    
+    delay(200);    
 }

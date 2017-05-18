@@ -5,6 +5,11 @@ Kugelfallexperimentimplementierung by
 @author Tobias Roth
 */
 
+#include "ExecutionTypeManager.h"
+#include "SensorReader.h"
+#include "TestButtonReader.h"
+#include "SensorManager.h"
+#include "MainController.h"
 #include "Servomotorcontrol.h"
 #include "Analyzer.h"
 #include <Servo.h>
