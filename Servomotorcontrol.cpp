@@ -26,9 +26,14 @@ void ServoMotorControl::dropball()
         TheServo.write(15);
     for (int pos = 15; pos < 20; pos++)
     {
-        TheServo.write(pos);        
+        TheServo.write(pos);
+        intendedDelay(20);
     }
-
+    //reset motor
+    intendedDelay(100);
+    TheServo.write(0);
+    intendedDelay(100);
+    TheServo.write(15);
 
 }
 

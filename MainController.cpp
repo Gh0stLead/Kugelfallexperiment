@@ -19,7 +19,8 @@ SensorManager* sensorManager;
 * Calls the initializer function.
 */
 MainController::MainController() {
-    if (debugging) {
+    if (debugging) 
+    {
         Serial.println(" Debug: MainController: Constructor called. ");
     }
     initialize();
@@ -29,7 +30,8 @@ MainController::MainController() {
 * The event loop represents the cental execution loop of the appication
 */
 void MainController::eventLoop() {
-    if (debugging) {
+    if (debugging) 
+    {
         Serial.println(" Debug: MainController: Event loop called. ");
     }
 }

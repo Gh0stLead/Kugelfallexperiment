@@ -31,10 +31,11 @@ const int MAX_NumberPhotoValues = 13;
 const float velocityTreshold = 400.0;
 const int timeDelaySlowMode = 391;
 const int timeDelayFastMode = 391 + 100 + 8;
- 
-ServoMotorControl servo;
-Analyzer analyse;
 
+MainController* mainController;
+ 
+/*ServoMotorControl servo;
+Analyzer analyse
 //int geschwindigkeit = 0;
 //unsigned long lastTime;
 //int lastFlank = 0;
@@ -44,7 +45,7 @@ Analyzer analyse;
 //int fallTime = 500; //in ms
 //int bisFallDauer = fallTime;
 //int letzteRundeZeitButton;
-//int drehDauer;
+//int drehDauer; */
 
 
 void setup() {
@@ -68,32 +69,25 @@ void setup() {
     //LED gelb
     pinMode(PIN_LED_Green, OUTPUT);
 
-    servo.initialize();
-
-
-    Serial.begin(9600);
-    //lastTime = 0;
-    //servo.write(20);
+    mainController = new MainController();
 }
 
 void loop() 
 {
-    analyse.onoff();
-    
+    mainController->eventLoop(); 
+    //analyse.onoff();      
     //int photosensor_val = digitalRead(2);
     //int hallsensor_val = digitalRead(3);
     //int trigger_val = digitalRead(4);
-    //int switch_val = digitalRead(5);
-
+    //int switch_val = digitalRead(5); 
     //if (hallsensor_val == 1)
     //{
     //    digitalWrite(13, HIGH);
     //}
     //else
     //{
-    //    digitalWrite(13, LOW);
+    //    digitalWrite(13, LOW);     
     //}
-
     //if (trigger_val == 1 && !triggered) {
     //    triggered = true;
     //    letzteRundeZeitButton = millis();
@@ -102,15 +96,13 @@ void loop()
     //    int deltaLastHall = millis() - lastHall;
     //    fallTime = (550 + drehDauer - deltaLastHall) % drehDauer;
     //    bisFallDauer = fallTime;
-    //}
-
+    //}                                   
     //if (hallsensor_old_val == 1 && hallsensor_val == 0) {
     //    lastHall = millis();
     //    //Serial.println(hallsensor_old_val);
     //    //Serial.print(hallsensor_val);
     //    //Serial.println(lastHall);
-    //}
-
+    //} 
     //if (triggered && (bisFallDauer > 0))
     //{
     //    int rundeZeitButton = millis();
@@ -123,9 +115,7 @@ void loop()
     //        servo.write(20);
     //        
     //    }
-    //}
-
-
+    //} 
     ////Serial.println(hallsensor_val);
     //if (photosensor_val != lastFlank)
     //{
@@ -144,9 +134,7 @@ void loop()
     ////Serial.print(" ; ");
     ////Serial.println(photosensor_val);
     ////Serial.println(millis());
-    ////Serial.println(servo.read());
-
-
+    ////Serial.println(servo.read()); 
     //delay(5);              // wait for a second
     //hallsensor_old_val = hallsensor_val;
 }
