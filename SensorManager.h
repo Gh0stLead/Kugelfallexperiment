@@ -17,6 +17,7 @@ private:
     SensorReader normalButtonReader;
     SensorReader testButtonReader;
     void initialize();
+    void readInputs();
 public:
     void fetchSensorValues();
     SensorManager();

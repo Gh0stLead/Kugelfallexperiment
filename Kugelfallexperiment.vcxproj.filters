@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Kugelfallexperiment.ino" />
+    <None Include="CodeSnippetsSchlagKoecher.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Kugelfallexperiment.vsarduino.h">

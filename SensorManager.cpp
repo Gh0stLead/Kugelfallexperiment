@@ -23,3 +23,11 @@ void SensorManager::initialize() {
     
     auto testButtonReader = new TestButtonReader();
 }
+
+void SensorManager::readInputs()
+{
+    Value_Millis = millis();
+    Value_Trigger = digitalRead(PIN_Trigger);
+    Value_Photo = digitalRead(PIN_Photo);
+    Value_Hall = digitalRead(PIN_Hall);
+}
