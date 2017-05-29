@@ -5,6 +5,7 @@ Kugelfallexperimentimplementierung by
 @author Tobias Roth
 */
 
+#include "StabilityChecker.h"
 #include "ExecutionTypeManager.h"
 #include "SensorReader.h"
 #include "TestButtonReader.h"

@@ -45,9 +45,9 @@ void MainController::eventLoop() {
     {
         Serial.println(" Debug: MainController: Event loop called. ");
     }
-    readInputs();//TODO This method used for gathering the data for the analyzer
+    analyse.readInputs();//TODO This method used for gathering the data for the analyzer
     //so move it there
-    boolean NewValueArrived = updateMemory();//TODO where to?
+    boolean NewValueArrived = analyse.updateMemory();//TODO where to?
     switch (ActualControllerStatus)
     {
     case IDLE:
@@ -62,7 +62,7 @@ void MainController::eventLoop() {
         }
         break;
     case APPROXIAMTION:
-        if (analyse.getAnalyzeData().status = READY)
+        if (analyse.getAnalyzeData().status == analyse.READY)
         {
             if (analyse.startApproximation || NewValueArrived)
             {

@@ -11,6 +11,7 @@
 class Analyzer
 {
 public:
+    const static int MaximumNumbersOfPhotoValues = 13;
     Analyzer();
     void onoff();
     enum MemoryStatus
@@ -35,6 +36,7 @@ public:
         TimeValue PhotoValues[MaximumNumbersOfPhotoValues];
         TimeValue HallValue;
     };
+    
     struct ApproximationData
     {
         bool isValid;
@@ -44,13 +46,21 @@ public:
         unsigned long time;
         unsigned long nextDropTime;
     };
+    
     ApproximationData getApproxData();
+    
     AnalyzedData getAnalyzeData();
 
     boolean updateMemory();
     void initSensorData();
     void initApproximationData();
     bool startApproximation;
+    void addNewPhotoValue();
+    void approximate();
+    void readInputs();
+    void CalcDropTime();
+    boolean busyWaitForDrop();
+    boolean validateSpeedUp();
 private:
     int _pin;
 };
