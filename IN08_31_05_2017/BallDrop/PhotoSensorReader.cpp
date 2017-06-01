@@ -7,8 +7,8 @@ PhotoSensorReader::PhotoSensorReader() {
 }
 
 bool PhotoSensorReader::isDataAvailable(int dataSize) {
-  //check if the current index is bigger than the requested data
-  return m_savedDataIndex > dataSize - 1;
+  //check if the current index is bigger than or equal to the requested data
+  return m_savedDataIndex >= dataSize - 1;
 }
 
 void PhotoSensorReader::readSensor() {
@@ -78,7 +78,7 @@ unsigned long PhotoSensorReader::getPlateSpeed() {
   unsigned long sum = 0;
   /*Serial.println("sum : ");*/
   for (int index = 0; index < numberOfValuesForAverage; index++) {
-    sum += m_savedData[m_savedDataIndex - index - 1] - m_savedData[m_savedDataIndex - index - 2];
+    sum += m_savedData[m_savedDataIndex - index] - m_savedData[m_savedDataIndex - index - 1];
     /*  Serial.print(m_savedData[m_savedDataIndex - index - 1]);
       Serial.print(" at index ");
       Serial.println(m_savedDataIndex - index - 1);

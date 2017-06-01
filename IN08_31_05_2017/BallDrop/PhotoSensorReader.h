@@ -37,7 +37,7 @@ private:
 	SensorData m_currentData;
 	SensorData m_lastData;
 
-	//Contains the last 15 values
+	//Contains the last 15 timestamps
    //SensorData m_savedData[1000];
 	unsigned long m_savedData[15];
 	int m_savedDataIndex;
