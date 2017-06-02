@@ -10,9 +10,10 @@ class ServoController {
     void dropBall();
 
   private:
-    const int openAngle = 25;
-    const int closedAngle = 0;
-    const int pinNumber = 9;
+    const int m_openAngle = 25;
+    const int m_closedAngle = 0;
+    const int m_pinNumber = 9;
+	const int m_dropDelay = 500;
     Servo m_servo;
 };
 #endif

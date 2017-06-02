@@ -17,6 +17,7 @@
 
 class MainController {
   public:
+
     MainController();
     void eventLoop();
     enum State {IDLE, TEST, ANALYZE, DROP_BALL};
@@ -25,9 +26,10 @@ class MainController {
     /**
        Memeber variables
     */
-    const int m_delayMillis = 0;
+    const int m_delayMillis = 5;
 
     State m_currentState;
+
     PhotoSensorReader* m_photoSensorReader;
     HallSensorReader* m_hallSensorReader;
     ExecutionTypeManager* m_executionTypeManager;
@@ -36,12 +38,11 @@ class MainController {
     Analyzer* m_analyzer;
     ServoController* m_servoController;
 
-    int m_greenLED_pin = 12;
-    int m_yellowLED_pin = 13;
+    const int m_greenLED_pin = 12;
+    const int m_yellowLED_pin = 13;
     bool m_debugging = true;
     bool m_testExecution = false;
 
-    bool m_isAnalyzerReady = false;
     /**
        Private methods
     */

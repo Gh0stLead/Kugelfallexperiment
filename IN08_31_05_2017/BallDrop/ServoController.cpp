@@ -1,18 +1,17 @@
 #include "ServoController.h"
 
 ServoController::ServoController() {
-  m_servo.attach(pinNumber);
-  m_servo.write(closedAngle);
+  m_servo.attach(m_pinNumber);
+  m_servo.write(m_closedAngle);
 }
 
 void ServoController::dropBall() {
   Serial.println("DEBUG: ServoController: dropBall called ");
 
-  m_servo.write(openAngle);
-  delay(500);
+  m_servo.write(m_openAngle);
+  delay(m_dropDelay);
 
-
-  m_servo.write(closedAngle);
+  m_servo.write(m_closedAngle);
 }
 
 

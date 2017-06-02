@@ -5,38 +5,33 @@ TriggerReader::TriggerReader() {
 }
 
 int TriggerReader::readSensor() {
-  m_currentValue = digitalRead(m_pinNumber);
-  //Serial.println(m_currentValue);
-  if (checkIfPressed() && millis() > (m_lastTimestamp + m_threshold)) {
-  // Serial.println("Trigger pressed");
-    m_lastTimestamp = millis();
-    incrementTriggers();
-  }
-  m_oldValue = m_currentValue;
-  //Serial.println(triggersToPocess);
+	m_currentValue = digitalRead(m_pinNumber);
+	if (wasPressed() && millis() > (m_lastTimestamp + m_threshold)) {
+		m_lastTimestamp = millis();
+		incrementTriggers();
+	}
+	m_oldValue = m_currentValue;
 }
 
 void TriggerReader::decrementTriggers() {
-  if (triggersToPocess > 0)
-    triggersToPocess--;
+	if (m_triggersToPocess > 0)
+		m_triggersToPocess--;
 }
 
 int TriggerReader::getNumberOfTriggers() {
-  //Serial.println("DEBUG: TRIGGERREADER: getNumberOfTriggers: ");
-  // Serial.println(triggersToPocess);
-  return triggersToPocess;
+	return m_triggersToPocess;
 }
 
-bool TriggerReader::checkIfPressed() {
-  if (m_oldValue == 0 && m_currentValue == 1) {
-    return true;
-  }
-  return false;
+bool TriggerReader::wasPressed() {
+	if (m_oldValue == 0 && m_currentValue == 1) {
+		return true;
+	}
+	return false;
 }
 
 void TriggerReader::incrementTriggers() {
-  if (triggersToPocess < triggersLimit)
-    triggersToPocess++;
+	if (m_triggersToPocess < m_triggersLimit)
+		m_triggersToPocess++;
 }
 
 

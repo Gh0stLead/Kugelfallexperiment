@@ -14,8 +14,8 @@ class Analyzer {
     //loop
     void analyzeSystem();
 
-    bool isReady();
     bool prepareToDrop();
+
   private:
     //it takes the ball 500ms to fall
     const unsigned long m_ballDropTimeDelay = 500;
@@ -29,7 +29,6 @@ class Analyzer {
     PhotoSensorReader* m_photoSensorReader;
     HallSensorReader* m_hallSensorReader;
 
-    bool m_ready = false;
     bool m_systemStable = false;
 
     unsigned long m_plateSpeedPerSegment;

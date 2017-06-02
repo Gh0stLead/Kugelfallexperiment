@@ -19,7 +19,6 @@ int HallSensorReader::readSensor() {
   }
 
   m_lastData = m_currentData;
-
   
   return m_currentData;
 }

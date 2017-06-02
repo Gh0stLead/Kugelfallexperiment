@@ -45,7 +45,7 @@ unsigned long Analyzer::getTimeTillNextHole() //wird wahrscheinlich ausgelagert.
 
 unsigned long Analyzer::getCurrentSpeed() // Sollte von PhotoSensorReader gegeben werden
 {
-  return m_photoSensorReader->getPlateSpeed();
+  return m_photoSensorReader->getSegmentTime();
 }
 
 

@@ -3,11 +3,10 @@
 MainController::MainController() {
 
   Serial.begin(9600);
+
   pinMode(m_greenLED_pin, OUTPUT);
   pinMode(m_yellowLED_pin , OUTPUT);
-  //if (m_debugging) {
-  //  Serial.println("DEBUG: MAINCONTROLLER: constructor called");
-  // }
+
   m_photoSensorReader = new PhotoSensorReader();
   m_hallSensorReader = new HallSensorReader();
   m_executionTypeManager = new ExecutionTypeManager();
@@ -21,20 +20,12 @@ MainController::MainController() {
 }
 
 void MainController::eventLoop() {
-  //if (m_debugging) {
-  // Serial.println("DEBUG: Eventloop called");
-  //}
-
   /**
      State machine
   */
   switch (m_currentState) {
 
     case IDLE:
-      //if (m_debugging) {
-      //Serial.println("DEBUG: MAINCONTROLLER: Current state is IDLE");
-      //}
-
       //Read the photosensor values
       m_photoSensorReader->readSensor();
 
@@ -59,7 +50,6 @@ void MainController::eventLoop() {
       //Ask the photosensor if data is available
       if (!m_photoSensorReader->isDataAvailable(15) || !m_photoSensorReader->isPlateSpeedAsRequired() ) {
         //If no data is available go back to idle
-        //    Serial.println("DEBUG: MAINCONTROLLER: State ANALYZE: Data is not available");
         setState(IDLE);
       }
       m_triggerReader->readSensor();
@@ -81,13 +71,14 @@ void MainController::eventLoop() {
         m_triggerReader->decrementTriggers();
         m_photoSensorReader->resetMemory();
 
-        //after dropped go back to analyze or test
+        //after dropped go back to idle or test
         if (m_testExecution == true)
           setState(TEST);
         else {
           setState(IDLE);
         }
       } else {
+		//read sensors while waiting for the right moment to drop the ball
         m_hallSensorReader->readSensor();
         m_photoSensorReader->readSensor();
         m_triggerReader->readSensor();
@@ -116,6 +107,8 @@ void MainController::setState(State state) {
     Serial.println();
   }
   m_currentState = state;
+
+  //Light up your life 
   if (m_currentState == IDLE) {
     digitalWrite(m_greenLED_pin, LOW);
     digitalWrite(m_yellowLED_pin, LOW);
