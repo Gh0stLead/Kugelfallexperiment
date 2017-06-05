@@ -5,9 +5,9 @@ PhotoSensorReader::PhotoSensorReader() {
 	m_savedDataIndex = 0;
 }
 
-bool PhotoSensorReader::isDataAvailable(int dataSize) {
-	//check if the current index is bigger than or equal to the requested data size
-	return m_savedDataIndex >= dataSize - 1;
+bool PhotoSensorReader::isDataAvailable() {
+	//check if the index is at the end of the array
+	return m_savedDataIndex == (sizeof(m_savedData) / sizeof(unsigned long)) - 1;
 }
 
 void PhotoSensorReader::readSensor() {
@@ -29,6 +29,9 @@ void PhotoSensorReader::addToSavedData(unsigned long value) {
 	else {
 		m_savedData[m_savedDataIndex++] = millis();
 	}
+
+	//DEBUG
+	printSavedData();
 }
 
 void PhotoSensorReader::resetMemory() {

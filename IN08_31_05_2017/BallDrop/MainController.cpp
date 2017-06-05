@@ -32,7 +32,7 @@ void MainController::eventLoop() {
       m_triggerReader->readSensor();
 
       //Ask the photosensor if data is available
-      if (m_photoSensorReader->isDataAvailable(15)) {
+      if (m_photoSensorReader->isDataAvailable()) {
         //  Serial.println("DEBUG: MAINCONTROLLER: State IDLE: Data is available");
         setState(ANALYZE);
       }
@@ -48,7 +48,7 @@ void MainController::eventLoop() {
 
     case ANALYZE:
       //Ask the photosensor if data is available
-      if (!m_photoSensorReader->isDataAvailable(15) || !m_photoSensorReader->isPlateSpeedAsRequired() ) {
+      if (!m_photoSensorReader->isDataAvailable() || !m_photoSensorReader->isPlateSpeedAsRequired() ) {
         //If no data is available go back to idle
         setState(IDLE);
       }

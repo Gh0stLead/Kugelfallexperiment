@@ -10,7 +10,7 @@ class PhotoSensorReader {
 public:
 	PhotoSensorReader();
 
-	bool isDataAvailable(int dataSize);
+	bool isDataAvailable();
 	bool isSystemStable();
 	bool isPlateSpeedAsRequired();
 
