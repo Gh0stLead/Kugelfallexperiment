@@ -26,7 +26,7 @@ class MainController {
     /**
        Memeber variables
     */
-    const int m_delayMillis = 5;
+    const int m_delayMillis = 0;
 
     State m_currentState;
 

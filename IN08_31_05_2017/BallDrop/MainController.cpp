@@ -65,7 +65,7 @@ void MainController::eventLoop() {
     case DROP_BALL:
 
       if (m_analyzer->prepareToDrop()) {
-
+        Serial.println("prepareToDrop true");
         //drop the ball
         m_servoController->dropBall();
         m_triggerReader->decrementTriggers();
@@ -78,7 +78,7 @@ void MainController::eventLoop() {
           setState(IDLE);
         }
       } else {
-		//read sensors while waiting for the right moment to drop the ball
+        //read sensors while waiting for the right moment to drop the ball
         m_hallSensorReader->readSensor();
         m_photoSensorReader->readSensor();
         m_triggerReader->readSensor();
@@ -108,7 +108,7 @@ void MainController::setState(State state) {
   }
   m_currentState = state;
 
-  //Light up your life 
+  //Light up your life
   if (m_currentState == IDLE) {
     digitalWrite(m_greenLED_pin, LOW);
     digitalWrite(m_yellowLED_pin, LOW);

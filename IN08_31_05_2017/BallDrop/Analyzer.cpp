@@ -53,10 +53,16 @@ unsigned long Analyzer::calculateTimeToWait()
 {
   unsigned long timeTillHole = getTimeTillNextHole();
   unsigned long currentSpeed = getCurrentSpeed();
+  long addFactor = 0;
+  if(currentSpeed > 100)
+  {
+    addFactor = 50;
+  }
+  unsigned long timeToWait = timeTillHole - m_ballDropTimeDelay + addFactor; //+ currentSpeed;
 
-  unsigned long timeToWait = timeTillHole - m_ballDropTimeDelay + currentSpeed * 1.5;
-
-  /*Serial.println(" Analyzer::calculateTimeToWait");
+  Serial.println(currentSpeed);
+/*
+  Serial.println(" Analyzer::calculateTimeToWait");
   Serial.println(timeTillHole);
   Serial.println(currentSpeed);
   Serial.println(timeToWait);
@@ -65,7 +71,7 @@ unsigned long Analyzer::calculateTimeToWait()
   while (timeToWait < millis())
   {
     timeToWait += currentSpeed * 12;
-   // Serial.println(timeToWait);
+    //Serial.println(timeToWait);
   }
 
   //hier einfügen die zusätzliche Zeit zur Abbremsung
