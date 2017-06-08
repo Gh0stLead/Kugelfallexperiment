@@ -27,18 +27,19 @@ public:
 private:
 
 	const int m_pinNumber = 2;
-	
+
 	//Lower speed limit is 10 s/round = 10000 ms/round
 	const unsigned long m_lowerSpeedLimit = 10000;
-	
+
 	//Upper speed limit is 3.5 rounds/seconds = 0.28571 s/round = 285.71 ms/round
 	const unsigned long m_upperSpeedLimit = 285;
 
-  static const int m_savedDataSize = 15;
+	static const int m_savedDataSize = 15;
+
 	//Contains the last 15 timestamps of photosensor changes
-  
 	unsigned long m_savedData[m_savedDataSize];
 	int m_savedDataIndex;
+	unsigned long m_savedDataDifferences[m_savedDataSize - 1];
 
 	unsigned long m_lastSpeed;
 
