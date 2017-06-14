@@ -56,11 +56,11 @@ unsigned long Analyzer::calculateTimeToWait()
   long addFactor = 0;
   if(currentSpeed > 100)
   {
-    addFactor = 50;
+    //addFactor = 50;
   }
   unsigned long timeToWait = timeTillHole - m_ballDropTimeDelay + addFactor; //+ currentSpeed;
 
-  Serial.println(currentSpeed);
+  //Serial.println(currentSpeed);
 /*
   Serial.println(" Analyzer::calculateTimeToWait");
   Serial.println(timeTillHole);

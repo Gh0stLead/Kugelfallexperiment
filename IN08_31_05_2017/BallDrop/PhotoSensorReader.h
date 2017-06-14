@@ -14,6 +14,8 @@ public:
 	bool isSystemStable();
 	bool isPlateSpeedAsRequired();
 
+  
+  
 	unsigned long getSegmentTime();
 
 	void readSensor();
@@ -46,8 +48,11 @@ private:
 	int m_currentValue = 0;
 	int m_lastValue = 0;
 
+  int m_instableCount = 0;
+  
 	void addToSavedData(unsigned long value);
 
+  void isStable();
 };
 
 #endif
