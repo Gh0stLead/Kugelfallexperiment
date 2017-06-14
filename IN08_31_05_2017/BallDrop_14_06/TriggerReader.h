@@ -5,12 +5,9 @@
 
 class TriggerReader {
   public:
-    TriggerReader();
-
+    TriggerReader(); 
     int readSensor() ;
-
-    void decrementTriggers() ;
-
+    void decrementTriggers() ; 
     int getNumberOfTriggers();
 
   private:
@@ -20,10 +17,9 @@ class TriggerReader {
     int m_oldValue = -1;
     unsigned long m_lastTimestamp = 0;//the timestamp of the last trigger press
     unsigned long m_threshold = 200; //ms between registered triggers
-    int m_triggersToPocess = 0;
+    int m_triggersToProcess = 0;
 
-    bool wasPressed();
-
+    bool wasPressedAndReleased(); 
     void incrementTriggers() ;
 
 };
