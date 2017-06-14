@@ -26,10 +26,11 @@ void MainController::eventLoop() {
   switch (m_currentState) {
 
     case IDLE:
+      m_triggerReader->readSensor();
+     
       //Read the photosensor values
       m_photoSensorReader->readSensor();
 
-      m_triggerReader->readSensor();
 
       //Ask the photosensor if data is available
       if (m_photoSensorReader->isDataAvailable()) {
@@ -48,7 +49,7 @@ void MainController::eventLoop() {
 
     case ANALYZE:
       //Ask the photosensor if data is available
-      if (!m_photoSensorReader->isDataAvailable() || !m_photoSensorReader->isPlateSpeedAsRequired() ) {
+      if (!m_photoSensorReader->isDataAvailable() || !m_photoSensorReader->isPlateSpeedAsRequired()  || !m_photoSensorReader->isSystemStable()) {
         //If no data is available go back to idle
         setState(IDLE);
       }
@@ -57,7 +58,7 @@ void MainController::eventLoop() {
       m_hallSensorReader->readSensor();
       m_analyzer->analyzeSystem();
 
-      if (m_triggerReader->getNumberOfTriggers() > 0 && m_photoSensorReader->isPlateSpeedAsRequired()) {
+      if (m_triggerReader->getNumberOfTriggers() > 0 && m_photoSensorReader->isPlateSpeedAsRequired() && m_photoSensorReader->isSystemStable()) {
         setState(DROP_BALL);
       }
       break;
@@ -69,8 +70,7 @@ void MainController::eventLoop() {
         //drop the ball
         m_servoController->dropBall();
         m_triggerReader->decrementTriggers();
-        m_photoSensorReader->resetMemory();
-
+     
         //after dropped go back to idle or test
         if (m_testExecution == true)
           setState(TEST);
@@ -78,6 +78,10 @@ void MainController::eventLoop() {
           setState(IDLE);
         }
       } else {
+        if ( !m_photoSensorReader->isPlateSpeedAsRequired() || !m_photoSensorReader->isSystemStable())
+        {
+          setState(IDLE);
+        }
         //read sensors while waiting for the right moment to drop the ball
         m_hallSensorReader->readSensor();
         m_photoSensorReader->readSensor();
@@ -110,6 +114,7 @@ void MainController::setState(State state) {
 
   //Light up your life
   if (m_currentState == IDLE) {
+     m_photoSensorReader->resetMemory();
     digitalWrite(m_greenLED_pin, LOW);
     digitalWrite(m_yellowLED_pin, LOW);
   }

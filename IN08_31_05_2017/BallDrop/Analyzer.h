@@ -23,7 +23,6 @@ class Analyzer {
     unsigned long m_dropTimestamp;
 
 	unsigned long getTimeTillNextHole();
-	unsigned long getCurrentSpeed();
 	unsigned long calculateTimeToWait();
 
     PhotoSensorReader* m_photoSensorReader;

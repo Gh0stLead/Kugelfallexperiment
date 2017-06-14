@@ -10,7 +10,8 @@ void ServoController::dropBall() {
 
   m_servo.write(m_openAngle);
   delay(m_dropDelay);
-
+  m_servo.write(m_loadAngle);
+  delay(m_dropDelay);
   m_servo.write(m_closedAngle);
 }
 

@@ -1,14 +1,16 @@
 #include "TriggerReader.h"
 
 TriggerReader::TriggerReader() {
-
+  pinMode(m_pinNumber, INPUT);
 }
 
 int TriggerReader::readSensor() {
 	m_currentValue = digitalRead(m_pinNumber);
-	if (wasPressed() && millis() > (m_lastTimestamp + m_threshold)) {
+	if (wasPressed() && (millis() > (m_lastTimestamp + m_threshold))) {
 		m_lastTimestamp = millis();
 		incrementTriggers();
+    //Serial.println("Trigger pressed");
+    //Serial.println(getNumberOfTriggers());
 	}
 	m_oldValue = m_currentValue;
 }
@@ -23,7 +25,7 @@ int TriggerReader::getNumberOfTriggers() {
 }
 
 bool TriggerReader::wasPressed() {
-	if (m_oldValue == 0 && m_currentValue == 1) {
+	if (m_oldValue == 1 && m_currentValue == 0) {
 		return true;
 	}
 	return false;
