@@ -59,23 +59,26 @@ void MainController::eventLoop() {
             //TODO do we need go into IDLE in the other cases
             setState(IDLE);
         }
-        //read in all needed sensor data
+        //read in all needed sensor data continuely
         m_triggerReader->readSensor();
         m_photoSensorReader->readSensor();
         m_hallSensorReader->readSensor();
+        //TODO rethink this step
         m_analyzer->analyzeSystem();
-
+        //change state when tigger count > 0           and speed is okay                                and system is stable
         if (m_triggerReader->getNumberOfTriggers() > 0 && m_photoSensorReader->isPlateSpeedAsRequired() && m_photoSensorReader->isSystemStable()) {
             setState(DROP_BALL);
         }
         break;
 
     case DROP_BALL:
-
-        if (m_analyzer->prepareToDrop()) {
+         //TODO rethink if the following quoatation maybe should be in the  Analyzer
+        if (m_analyzer->prepareToDrop()) 
+        {
             Serial.println("prepareToDrop true");
             //drop the ball
             m_servoController->dropBall();
+            //decrement Trigger count
             m_triggerReader->decrementTriggers();
 
             //after dropped go back to idle or test
@@ -85,11 +88,13 @@ void MainController::eventLoop() {
                 setState(IDLE);
             }
         }
-        else {
+        else 
+        {    //TODO shouldnt we just set the state to idle here
             if (!m_photoSensorReader->isPlateSpeedAsRequired() || !m_photoSensorReader->isSystemStable())
             {
                 setState(IDLE);
             }
+            //TODO think about the comment below
             //read sensors while waiting for the right moment to drop the ball
             m_hallSensorReader->readSensor();
             m_photoSensorReader->readSensor();
